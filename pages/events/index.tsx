@@ -1,9 +1,11 @@
 import EventCard from "@/components/EventCard";
+import DateFilter from "@/components/DateFilter";
 import EventList from "@/components/EventList";
 
-export default function Home() {
+export default function Events() {
   return (
     <>
+      <DateFilter />
       {EventList.map((event) => (
         <EventCard
           key={event.id}

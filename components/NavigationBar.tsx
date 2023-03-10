@@ -27,6 +27,8 @@ import {
 
 export default function NavigationBar() {
   const { isOpen, onToggle } = useDisclosure();
+  const linkColor = useColorModeValue("gray.600", "gray.200");
+  const linkHoverColor = useColorModeValue("gray.800", "white");
 
   return (
     <Box>
@@ -60,8 +62,9 @@ export default function NavigationBar() {
             textAlign={useBreakpointValue({ base: "center", md: "left" })}
             fontFamily={"heading"}
             color={useColorModeValue("gray.800", "white")}
+            fontWeight={"bolder"}
           >
-            Logo
+            NextEvents
           </Text>
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
@@ -70,34 +73,25 @@ export default function NavigationBar() {
         </Flex>
 
         <Stack
-          flex={{ base: 1, md: 0 }}
+          flex={{ base: 1, md: 1 }}
           justify={"flex-end"}
           direction={"row"}
           spacing={6}
         >
-          <Button
+          <Link
             as={NextLink}
+            p={2}
+            href="/events"
             fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/signin"}
-          >
-            Sign In
-          </Button>
-          <Button
-            as={NextLink}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
+            fontWeight={500}
+            color={linkColor}
             _hover={{
-              bg: "pink.300",
+              textDecoration: "none",
+              color: linkHoverColor,
             }}
           >
-            Sign Up
-          </Button>
+            All Events
+          </Link>
         </Stack>
       </Flex>
 
@@ -272,41 +266,7 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
-    children: [
-      {
-        label: "Explore Design Work",
-        subLabel: "Trending Design to inspire you",
-        href: "#",
-      },
-      {
-        label: "New & Noteworthy",
-        subLabel: "Up-and-coming Designers",
-        href: "#",
-      },
-    ],
-  },
-  {
-    label: "Find Work",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
-  },
-  {
-    label: "Learn Design",
-    href: "/design",
-  },
-  {
-    label: "Hire Designers",
-    href: "/hire",
+    label: "Home",
+    href: "/",
   },
 ];
