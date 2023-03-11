@@ -15,6 +15,7 @@ export default function Event() {
           date={EventList[eventId].date}
           address1={EventList[eventId].address1}
           address2={EventList[eventId].address2}
+          showExploreBtn={false}
         />
       ) : (
         <h1>No Events Found.</h1>

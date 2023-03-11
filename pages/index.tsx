@@ -12,6 +12,7 @@ export default function Home() {
           date={event.date}
           address1={event.address1}
           address2={event.address2}
+          showExploreBtn={true}
         />
       ))}
     </>

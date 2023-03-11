@@ -14,6 +14,7 @@ export default function Events() {
           date={event.date}
           address1={event.address1}
           address2={event.address2}
+          showExploreBtn={true}
         />
       ))}
     </>

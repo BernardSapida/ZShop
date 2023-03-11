@@ -54,15 +54,17 @@ export default function EventCard(props: any) {
             </Flex>
           </CardBody>
           <CardFooter>
-            <Button
-              as={Link}
-              href={`/events/${props.id}`}
-              variant="solid"
-              colorScheme={"blue"}
-            >
-              Explore Event
-              <ArrowForwardIcon w={5} h={5} ml="2" />
-            </Button>
+            {props.showExploreBtn && (
+              <Button
+                as={Link}
+                href={`/events/${props.id}`}
+                variant="solid"
+                colorScheme={"blue"}
+              >
+                Explore Event
+                <ArrowForwardIcon w={5} h={5} ml="2" />
+              </Button>
+            )}
           </CardFooter>
         </Stack>
       </Card>
