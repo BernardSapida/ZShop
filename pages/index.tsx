@@ -1,10 +1,26 @@
 import EventCard from "@/components/EventCard";
-import EventList from "@/components/EventList";
+import fs from "fs/promises";
+import path from "path";
 
-export default function Home() {
+export async function getStaticProps() {
+  console.log("REGENERATING");
+  const filePath = path.join(process.cwd(), "data/EventList.json");
+  const jsonData = await fs.readFile(filePath, "utf-8");
+  const EventList = JSON.parse(jsonData).events;
+
+  return {
+    props: {
+      list: [...EventList],
+    },
+    revalidate: 10,
+    notFound: false,
+  };
+}
+
+export default function Home(props: any) {
   return (
     <>
-      {EventList.map((event) => (
+      {props.list.map((event: Record<string, any>) => (
         <EventCard
           key={event.id}
           id={event.id}

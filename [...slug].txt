@@ -1,10 +1,29 @@
 import { useRouter } from "next/router";
-import EventList from "@/components/EventList";
 import EventCard from "@/components/EventCard";
 import { Text, Button, Center } from "@chakra-ui/react";
 import Link from "next/link";
+import fs from "fs/promises";
+import path from "path";
 
-export default function MonthEvent() {
+async function getEvents() {
+  const filePath = path.join(process.cwd(), "data/EventList.json");
+  const jsonData = await fs.readFile(filePath, "utf-8");
+  const EventList = JSON.parse(jsonData).events;
+
+  return EventList;
+}
+
+export async function getStaticProps() {
+  const EventList = await getEvents();
+
+  return {
+    props: {
+      list: { ...EventList },
+    },
+  };
+}
+
+export default function MonthEvent(props: any) {
   const router = useRouter();
   const slug: Array<string> | string | undefined = router.query.slug;
   let filteredDate: Date = new Date(
@@ -13,7 +32,7 @@ export default function MonthEvent() {
 
   const month = filteredDate?.toLocaleString("default", { month: "long" });
 
-  const filteredEvents = EventList.filter((event) => {
+  const filteredEvents = props.list.filter((event: Record<string, any>) => {
     const eventMonth = new Date(event.date).getMonth();
     const eventYear = new Date(event.date).getFullYear();
 
@@ -24,6 +43,7 @@ export default function MonthEvent() {
       );
     }
   });
+
   const eventExist = filteredEvents.length > 0;
   const eventsElement = (
     <>
@@ -52,7 +72,7 @@ export default function MonthEvent() {
         </Button>
       </Center>
 
-      {filteredEvents.map((event) => (
+      {filteredEvents.map((event: Record<string, any>) => (
         <EventCard
           key={event.id}
           id={event.id}
