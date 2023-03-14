@@ -15,9 +15,7 @@ export async function getStaticProps() {
   const EventList = await getEvents();
 
   return {
-    props: {
-      list: [...EventList],
-    },
+    props: { list: [...EventList] },
   };
 }
 
