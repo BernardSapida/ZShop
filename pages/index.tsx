@@ -25,6 +25,7 @@ export async function getStaticProps() {
       list: [...EventList],
       data: data,
     },
+    // revalidate: 10,
   };
 }
 
@@ -34,7 +35,7 @@ export default function Home(props: any) {
   const { data, error } = useSWR(
     "https://sampledeno-default-rtdb.firebaseio.com/data.json",
     fetcher,
-    { refreshInterval: 0 }
+    { refreshInterval: 500 }
   );
 
   useEffect(() => {
