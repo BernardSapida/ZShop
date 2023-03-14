@@ -45,6 +45,7 @@ export default function Home(props: any) {
 
   return (
     <>
+      <h1>Updated</h1>
       {keys.map((key: any) => {
         return <p key={key}>{names[key]["name"]}</p>;
       })}
