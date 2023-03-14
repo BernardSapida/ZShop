@@ -35,7 +35,7 @@ export default function Home(props: any) {
   const { data, error } = useSWR(
     "https://sampledeno-default-rtdb.firebaseio.com/data.json",
     fetcher,
-    { refreshInterval: 60000 }
+    { refreshInterval: 2000 }
   );
 
   useEffect(() => {
