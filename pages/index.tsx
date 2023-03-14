@@ -3,7 +3,6 @@ import fs from "fs/promises";
 import path from "path";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
-import { Button } from "@chakra-ui/react";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -30,14 +29,12 @@ export async function getStaticProps() {
 }
 
 export default function Home(props: any) {
-  const [active, setActive] = useState(false);
   const keys = Object.keys(props.data);
   const [names, setNames] = useState(props.data);
-
   const { data, error } = useSWR(
     "https://sampledeno-default-rtdb.firebaseio.com/data.json",
     fetcher,
-    active ? { refreshInterval: 0 } : { revalidateOnFocus: true }
+    { refreshInterval: 0 }
   );
 
   useEffect(() => {
@@ -47,9 +44,6 @@ export default function Home(props: any) {
 
   return (
     <>
-      <Button onClick={() => setActive((prev) => !prev)}>
-        {active ? "Activate" : "Deactivate"}
-      </Button>
       {keys.map((key: any) => {
         return <p key={key}>{names[key]["name"]}</p>;
       })}
