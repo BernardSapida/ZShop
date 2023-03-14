@@ -35,7 +35,7 @@ export default function Home(props: any) {
   const { data, error } = useSWR(
     "https://sampledeno-default-rtdb.firebaseio.com/data.json",
     fetcher,
-    { refreshInterval: 5000 }
+    { refreshInterval: 60000 }
   );
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function Home(props: any) {
 
   return (
     <>
-      <h1>Updated</h1>
+      <h1>New</h1>
       {keys.map((key: any) => {
         return <p key={key}>{names[key]["name"]}</p>;
       })}
