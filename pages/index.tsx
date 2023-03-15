@@ -51,17 +51,8 @@ export default function Home(props: any) {
           name="description"
           content="Find a lot of greate events that allow you to grow"
         />
-        <meta property="og:title" content="The Rock" />
-        <meta property="og:type" content="video.movie" />
-        <meta
-          property="og:url"
-          content="https://www.imdb.com/title/tt0117500/"
-        />
-        <meta
-          property="og:image"
-          content="https://ia.media-imdb.com/images/rock.jpg"
-        />
       </Head>
+
       {props.list.map((event: Record<string, any>) => (
         <EventCard
           key={event.id}

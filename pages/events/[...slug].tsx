@@ -3,6 +3,7 @@ import { Text, Button, Center } from "@chakra-ui/react";
 import Link from "next/link";
 import path from "path";
 import fs from "fs/promises";
+import Head from "next/head";
 
 async function getEvents() {
   const filePath = path.join(process.cwd(), "data/EventList.json");
@@ -45,6 +46,15 @@ export default function MonthEvent(props: any) {
   const eventExist = filteredEvents.length > 0;
   const eventsElement = (
     <>
+      <Head>
+        <title>
+          NextEvents | {month} {filteredDate.getFullYear()}
+        </title>
+        <meta
+          name="description"
+          content={`This is a ${month} ${filteredDate.getFullYear()} event! Come and join with us.`}
+        />
+      </Head>
       <Text
         maxW="660px"
         w="95%"

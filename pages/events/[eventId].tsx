@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import EventCard from "@/components/EventCard";
 import fs from "fs/promises";
 import path from "path";
+import Head from "next/head";
 
 async function getEvents() {
   const filePath = path.join(process.cwd(), "data/EventList.json");
@@ -39,6 +40,13 @@ export default function Event(props: any) {
 
   return (
     <>
+      <Head>
+        <title>NextEvents | {props.list[eventId].title}</title>
+        <meta
+          name="description"
+          content={`This is a ${props.list[eventId].title} event! Come and join with us.`}
+        />
+      </Head>
       {eventExist ? (
         <EventCard
           title={props.list[eventId].title}

@@ -2,6 +2,7 @@ import EventCard from "@/components/EventCard";
 import DateFilter from "@/components/DateFilter";
 import fs from "fs/promises";
 import path from "path";
+import Head from "next/head";
 
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), "data/EventList.json");
@@ -18,6 +19,13 @@ export async function getStaticProps() {
 export default function Events(props: any) {
   return (
     <>
+      <Head>
+        <title>NextJS | Events</title>
+        <meta
+          name="description"
+          content="Find a lot of greate events that allow you to grow"
+        />
+      </Head>
       <DateFilter />
       {props.list.map((event: Record<string, any>) => (
         <EventCard

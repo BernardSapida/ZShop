@@ -1,5 +1,6 @@
-import { ChakraProvider } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
+
+import { ChakraProvider } from "@chakra-ui/react";
 import NextNProgress from "nextjs-progressbar";
 
 import NavigationBar from "@/components/NavigationBar";
