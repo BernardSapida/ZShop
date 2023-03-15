@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const fetcher = async (url: string) => {
   const response = await fetch(url);
@@ -25,7 +26,6 @@ export async function getStaticProps() {
       list: [...EventList],
       data: data,
     },
-    // revalidate: 10,
   };
 }
 
@@ -45,10 +45,23 @@ export default function Home(props: any) {
 
   return (
     <>
-      <h1>New</h1>
-      {keys.map((key: any) => {
-        return <p key={key}>{names[key]["name"]}</p>;
-      })}
+      <Head>
+        <title>NextJS | Home</title>
+        <meta
+          name="description"
+          content="Find a lot of greate events that allow you to grow"
+        />
+        <meta property="og:title" content="The Rock" />
+        <meta property="og:type" content="video.movie" />
+        <meta
+          property="og:url"
+          content="https://www.imdb.com/title/tt0117500/"
+        />
+        <meta
+          property="og:image"
+          content="https://ia.media-imdb.com/images/rock.jpg"
+        />
+      </Head>
       {props.list.map((event: Record<string, any>) => (
         <EventCard
           key={event.id}
